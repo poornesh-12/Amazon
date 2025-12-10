@@ -74,11 +74,11 @@ pipeline {
                     def BRANCH = env.BRANCH_NAME.toLowerCase()
 
                     
-                    def HOST = (params.DEPLOY_ENV == 'dev')  ? "192.168.127.128:8085"  :
-                               (params.DEPLOY_ENV == 'qa')   ? "192.168.127.128:8089"   :
-                                                                 "192.168.127.128:8083"
+                    def HOST = (params.DEPLOY_ENV == 'dev')  ? "192.168.13.128:8085"  :
+                               (params.DEPLOY_ENV == 'qa')   ? "192.168.13.128:8089"   :
+                                                                 "192.168.13.128:8083"
 
-                    withCredentials([usernamePassword(credentialsId: 'local tomcat', usernameVariable: 'admin', passwordVariable: 'admin')]) { //admin , admin is jenkins variables we do not need to replace with ACTUAL values
+                    withCredentials([usernamePassword(credentialsId: 'local tomcat', usernameVariable: 'USER', passwordVariable: 'PASS')]) { //USER , PASS is jenkins variables we do not need to replace with ACTUAL values
 
                         sh """
                             echo "Undeploy old version"
@@ -100,4 +100,3 @@ pipeline {
         }
     }
 }
-
