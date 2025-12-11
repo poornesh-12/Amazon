@@ -9,7 +9,7 @@ pipeline {
         ) 
     } 
  
-MARUTHI B G 
+
     environment { 
         SONAR_SERVER = "sonarqube"        // Name from Jenkins Global Configuration 
         SONAR_TOKEN  = "sonar-token"      // Jenkins Secret Text credential ID 
@@ -39,7 +39,7 @@ MARUTHI B G
  
         /* ================== SONARQUBE ANALYSIS ================== */ 
         stage('SonarQube Analysis') { 
-MARUTHI B G 
+
             steps { 
                 script { 
                     withSonarQubeEnv("${SONAR_SERVER}") { 
@@ -69,7 +69,7 @@ MARUTHI B G
             } 
         } 
  
-MARUTHI B G 
+
         /* ================== UNIT TEST ================== */ 
         stage('Unit Test') { 
             steps { 
@@ -100,15 +100,15 @@ ${WAR_BACKUP_DIR}/amazon_${BUILD_NUMBER}.war"
             } 
         } 
  
-MARUTHI B G 
+
         /* ================== DEPLOY TO TOMCAT ================== */ 
         stage('Deploy to Tomcat') { 
             steps { 
                 script { 
                     def HOST = 
-                        (env.DEPLOY_ENV == 'dev')  ? "192.168.127.128:8085" : 
-                        (env.DEPLOY_ENV == 'qa')   ? "192.168.127.128:8089" : 
-                                                      "192.168.127.128:8083" 
+                        (env.DEPLOY_ENV == 'dev')  ? "localhost:8085" : 
+                        (env.DEPLOY_ENV == 'qa')   ? "localhost:8092" : 
+                                                      "localhost:8081" 
  
                     echo "Deploying to: ${HOST}" 
  
@@ -131,7 +131,7 @@ MARUTHI B G
                         """ 
                     } 
                 } 
-MARUTHI B G 
+
             } 
         } 
     } 
